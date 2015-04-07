@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="HealthCalculator">
+<head>
+    <link href="Styles.css" rel="stylesheet" type="text/css" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <title></title>
+</head>
+<body ng-controller="PersonController">
+    <div class="page-wrap">
+        <div class="text-center header">
+            <span class="glyphicon glyphicon-apple"></span>Calorie Calculator
+        </div>
+        <div class="col-md-12" ng-view>
+        </div>
+    </div>
+    <footer class="text-center site-footer">
+        <a href="#/letsGo" class="btn btn-lg btn-success" ng-click="changePage()" ng-if="isFirstPage">Lets go!</a>
+        <button ng-if="showResultView" class="btn btn-success btn-lg" ng-click="changePage()">Retry</button>
+    </footer>
+</body>
+<script type="text/javascript" src="scripts/angular.js"></script>
+<script type="text/javascript" src="scripts/angular-route.js"></script>
+<script type="text/javascript" src="scripts/angular-resource.js"></script>
+<script type="text/javascript" src="main.js"></script>
+<script type="text/javascript" src="app/services/CalculatorService.js"></script>
+<script type="text/javascript" src="app/controllers/PersonController.js"></script>
+</html>

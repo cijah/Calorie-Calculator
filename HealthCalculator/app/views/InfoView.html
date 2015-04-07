@@ -1,0 +1,94 @@
+﻿<div class="col-md-4" ng-if="!showResultView">
+</div>
+<div class="col-md-4 margin-top-calc" ng-if="!showResultView">
+    <div>
+        To start use calculator, please provide necessary information about yourself.
+    </div>
+    <form name="infoForm" class="form margin-top-small" validate>
+    <div class="form-group">
+        <label>
+            Name:</label>
+        <input type="text" placeholder="Enter your name" class="form-control" name="personName"
+            ng-model="person.name" required="Name is Required" />
+    </div>
+    <div class="form-group">
+        <label>
+            Gender:
+        </label>
+        <div>
+            <input type="radio" ng-model="person.gender" value="0" /><span class="margin-left-extra-small margin-right-small">male</span>
+            <input type="radio" ng-model="person.gender" value="1" /><span class="margin-left-extra-small">female</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>
+            Age:</label>
+        <input type="number" placeholder="Enter your age in years" name="personAge" class="form-control"
+            ng-model="person.age" min="1" max="150" required />
+    </div>
+    <div class="form-group">
+        <label>
+            Height:</label>
+        <input type="number" placeholder="Enter your height in cm" class="form-control" ng-model="person.height"
+            min="0" required />
+    </div>
+    <div class="form-group">
+        <label>
+            Weight:</label>
+        <input type="number" placeholder="Enter your weight in kg" class="form-control" ng-model="person.weight"
+            min="0" required />
+    </div>
+    <button type="submit" name="submitit" class="btn margin-top-small btn-success btn-lg"
+        ng-click="applyInfo()">
+        Ok</button>
+    </form>
+</div>
+<div ng-if="showResultView" class="col-md-2">
+</div>
+<div class="col-md-8 text-center margin-top-calc" ng-if="showResultView">
+    <h2>
+        {{person.name}}!</h2>
+    <div ng-if="!result" class="margin-top-middle result-text">
+        <span>Sorry, we could't calculate result for you. To try again, please, press button
+            below. </span>
+    </div>
+    <div ng-if="result" class="margin-top-calc result-text">
+        <span>Amount of calories that you are supposed to consume in a day: </span><span
+            class="result-text-big result-color">{{result}}</span> <span class="result-text-big"
+                ng-if="person.gender==0">±210.5</span> <span class="result-text-big" ng-if="person.gender==1">
+                    ±201 </span><span class="result-text-big result-color">kcal/day</span>
+        <div>
+            <div ng-if="!showRecommendations">
+                <button ng-click="showHideRecommendations()" class="btn btn-lg btn-success margin-top-big">
+                    <span class="glyphicon glyphicon-list-alt"></span><span>  View recommendations</span>
+                </button>
+            </div>
+        </div>
+        <div ng-if="showRecommendations" class="margin-top-middle result-text">
+            <span>The following table enables calculation of an individual's recommended daily kilocalorie
+                intake to maintain current weight.</span>
+            <table class="table table-bordered margin-top-small">
+                <thead>
+                    <th class="col-md-8 text-center">
+                        <span>Workout intensity</span>
+                    </th>
+                    <th class="col-md-4 text-center">
+                        <span>Calories</span>
+                    </th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in recommendationsList">
+                        <td class="col-md-8">
+                            <span>{{item.title}}</span>
+                        </td>
+                        <td class="col-md-4">
+                            <span>{{item.value}}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <a id="hideLink" class="margin-top-small" ng-click="showHideRecommendations()">Hide
+                recommendations</a>
+        </div>
+    </div>
+</div>
